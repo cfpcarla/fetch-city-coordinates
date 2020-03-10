@@ -20,7 +20,7 @@ app.listen(PORT, () => {
 app.get("/", (request, response) => {
   const apiKey = process.env.GOOGLEAPIKEY;
   fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.city}&key=${apiKey}`)
-    .then(res => res.json())
+    .then(res => res.json()) // pesquisar depois por que precisa desse primeiro "then"
     .then((locationResponse) => {
       if (locationResponse.status === 'ZERO_RESULTS') {
         response.status(404).json({ error: 'City not found' })
